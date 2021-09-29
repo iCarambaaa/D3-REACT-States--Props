@@ -1,0 +1,22 @@
+.selected {
+  background-color: aquamarine;
+}
+.clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.img-books {
+  object-fit: cover !important;
+}
+
+body {
+  background: rgb(95, 33, 76);
+  background: linear-gradient(
+    90deg,
+    rgba(95, 33, 76, 1) 5%,
+    rgba(19, 26, 65, 1) 62%
+  );
+}

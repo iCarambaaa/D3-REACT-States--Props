@@ -4,17 +4,18 @@ import MyBadge from './components/MyBadge';
 import  WarningSing  from './components/WarningSign';
 import BookList from "./components/BookList ";
 import History from "./history.json";
+import Container from "react-bootstrap/Container";
 
 
 
 function App() {
   return (
-    <div>
+    <Container>
 <WarningSing str=" little code. "/>
 <MyBadge text="hello badge!" color="success"/>
 
 <BookList list={History} />
-    </div>
+    </Container>
   );
 }
 

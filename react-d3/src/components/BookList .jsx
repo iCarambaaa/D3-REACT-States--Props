@@ -1,28 +1,29 @@
 import SingleBook from "./SingleBook ";
 import { Component } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+//import Container from "react-bootstrap/Container";
 
 class BookList extends Component {
   state = {
-    querry: "",
+    query: "",
   };
 
   search = (e) => {
     this.setState({
-      querry: e.target.value,
+      query: e.target.value,
     });
   };
 
   //   result = words.filter(word => word.includes("des"));
-  filterBook = (list) => {
+  filterBookList = (list) => {
     //console.log(list);
     // let result = list.title;
     const isFound = list.filter((book) =>
-      book.title.toLowerCase().includes(this.state.querry.toLowerCase())
+      book.title.toLowerCase().includes(this.state.query.toLowerCase())
     );
     console.log(isFound);
 
+    return isFound;
     // list.forEach((book) => {
     //   const result = book.title.filter((b) => b.includes(this.state.querry));
 
@@ -38,21 +39,20 @@ class BookList extends Component {
             <Form.Control
               type="text"
               placeholder="Search here"
-              value={this.state.querry}
+              value={this.state.query}
               onChange={(e) => this.search(e)}
             />
           </Form.Group>
-          <Button
-            type="button"
-            onClick={() => this.filterBook(this.props.list)}
-          >
-            Search
-          </Button>
         </div>
+
         <div className="d-flex flex-wrap justify-content-around">
-          {this.props.list.map((books) => (
-            <SingleBook image={books.img} title={books.title} />
-          ))}
+          {!this.state.query
+            ? this.props.list.map((books) => (
+                <SingleBook image={books.img} title={books.title} />
+              ))
+            : this.filterBookList(this.props.list).map((books) => (
+                <SingleBook image={books.img} title={books.title} />
+              ))}
         </div>
       </div>
     );
