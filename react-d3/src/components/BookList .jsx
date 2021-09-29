@@ -15,28 +15,37 @@ class BookList extends Component {
   };
 
   //   result = words.filter(word => word.includes("des"));
-  filterBook = ({ list }) => {
-    // result = list.title
-    list.foreach((book) => {
-      const result = book.title.filter((b) => b.includes(this.state.querry));
+  filterBook = (list) => {
+    //console.log(list);
+    // let result = list.title;
+    const isFound = list.filter((book) =>
+      book.title.toLowerCase().includes(this.state.querry.toLowerCase())
+    );
+    console.log(isFound);
 
-      console.log(result);
-    });
+    // list.forEach((book) => {
+    //   const result = book.title.filter((b) => b.includes(this.state.querry));
+
+    //   console.log("string");
+    // });
   };
 
   render() {
-    console.log(this.filterBook);
     return (
       <div>
         <div>
-          <Form.Group className="m-3" onChange={this.search}>
+          <Form.Group className="m-3">
             <Form.Control
               type="text"
               placeholder="Search here"
               value={this.state.querry}
+              onChange={(e) => this.search(e)}
             />
           </Form.Group>
-          <Button type="button" onClick={this.filterBook(this.props.list)}>
+          <Button
+            type="button"
+            onClick={() => this.filterBook(this.props.list)}
+          >
             Search
           </Button>
         </div>
