@@ -11,7 +11,7 @@ import Container from "react-bootstrap/Container";
 function App() {
   return (
     <Container>
-<WarningSing str=" little code. "/>
+<WarningSing str=" much <3 but little code. "/>
 <MyBadge text="hello badge!" color="success"/>
 
 <BookList list={History} />

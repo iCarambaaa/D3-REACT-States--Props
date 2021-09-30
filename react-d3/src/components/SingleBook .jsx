@@ -16,11 +16,11 @@ class SingleBook extends Component {
   };
 
   render() {
-    console.log(this.props.key);
-    console.log(this.props.title);
+    // console.log(this.props.asin);
+    // console.log(this.props.title);
     return (
       <Card
-        key={this.props.key}
+        key={this.props.asin}
         style={{ width: "24%", marginTop: "10px", opacity: "0.8" }}
         onClick={this.selectCard}
         className={this.state.selected ? "selected" : null}
@@ -29,7 +29,7 @@ class SingleBook extends Component {
         <Card.Body>
           <Card.Title className="clamp">{this.props.title}</Card.Title>
         </Card.Body>
-        {this.state.selected ? <CommentArea key={this.key} /> : null}
+        {this.state.selected ? <CommentArea asin={this.props.asin} /> : null}
       </Card>
     );
   }

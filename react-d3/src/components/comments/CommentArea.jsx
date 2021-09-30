@@ -3,19 +3,13 @@ import { Component } from "react";
 import CommentsList from "./CommentsList";
 
 class CommemtArea extends Component {
-  render() {
-    console.log(this.props.key);
-    return (
-      <div>
-        <h5>Comments</h5>
-        <CommentsList />
-      </div>
-    );
-  }
+  state = {
+    comments: [],
+  };
 
   componentDidMount = async () => {
     const response = await fetch(
-      "https://striveschool-api.herokuapp.com/api/comments/" + this.props.key,
+      "https://striveschool-api.herokuapp.com/api/comments/" + this.props.asin,
       {
         headers: {
           Authorization:
@@ -24,8 +18,18 @@ class CommemtArea extends Component {
       }
     );
     const realComments = await response.json();
-    console.log(realComments);
+    this.setState({ comments: realComments });
   };
+
+  render() {
+    console.log(this.props.asin);
+    return (
+      <div>
+        <h5>Comments</h5>
+        <CommentsList comments={this.state.comments} />
+      </div>
+    );
+  }
 }
 
 export default CommemtArea;
