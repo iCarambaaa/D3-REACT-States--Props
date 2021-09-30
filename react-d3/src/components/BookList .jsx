@@ -48,10 +48,18 @@ class BookList extends Component {
         <div className="d-flex flex-wrap justify-content-around">
           {!this.state.query
             ? this.props.list.map((books) => (
-                <SingleBook image={books.img} title={books.title} />
+                <SingleBook
+                  key={books.asin}
+                  image={books.img}
+                  title={books.title}
+                />
               ))
             : this.filterBookList(this.props.list).map((books) => (
-                <SingleBook image={books.img} title={books.title} />
+                <SingleBook
+                  key={books.asin}
+                  image={books.img}
+                  title={books.title}
+                />
               ))}
         </div>
       </div>
