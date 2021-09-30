@@ -1,4 +1,4 @@
-// import AddComment from "./comments/AddComment";
+import AddComment from "./AddComment";
 import { Component } from "react";
 import CommentsList from "./CommentsList";
 
@@ -27,6 +27,7 @@ class CommemtArea extends Component {
       <div>
         <h5>Comments</h5>
         <CommentsList comments={this.state.comments} />
+        <AddComment></AddComment>
       </div>
     );
   }

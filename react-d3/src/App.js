@@ -12,7 +12,7 @@ function App() {
   return (
     <Container>
 <WarningSing str=" much <3 but little code. "/>
-<MyBadge text="hello badge!" color="success"/>
+<MyBadge text="click on picture" color="success"/>
 
 <BookList list={History} />
     </Container>
