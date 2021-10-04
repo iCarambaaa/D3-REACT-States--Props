@@ -1,7 +1,6 @@
 import SingleBook from "./SingleBook ";
 import { Component } from "react";
 import Form from "react-bootstrap/Form";
-import CommemtArea from "./comments/CommentArea";
 //import Container from "react-bootstrap/Container";
 
 class BookList extends Component {
@@ -36,7 +35,7 @@ class BookList extends Component {
     return (
       <div>
         <div>
-          <Form.Group className="m-3 w-25">
+          <Form.Group className="m-3">
             <Form.Control
               type="text"
               placeholder="Search here"
@@ -46,27 +45,22 @@ class BookList extends Component {
           </Form.Group>
         </div>
 
-        <div className="row">
-          <div className="d-flex flex-wrap justify-content-around col-8">
-            {!this.state.query
-              ? this.props.list.map((books) => (
-                  <SingleBook
-                    asin={books.asin}
-                    image={books.img}
-                    title={books.title}
-                  />
-                ))
-              : this.filterBookList(this.props.list).map((books) => (
-                  <SingleBook
-                    asin={books.asin}
-                    image={books.img}
-                    title={books.title}
-                  />
-                ))}
-          </div>
-          <div className="col-4">
-            <CommemtArea></CommemtArea>
-          </div>
+        <div className="d-flex flex-wrap justify-content-around">
+          {!this.state.query
+            ? this.props.list.map((books) => (
+                <SingleBook
+                  asin={books.asin}
+                  image={books.img}
+                  title={books.title}
+                />
+              ))
+            : this.filterBookList(this.props.list).map((books) => (
+                <SingleBook
+                  asin={books.asin}
+                  image={books.img}
+                  title={books.title}
+                />
+              ))}
         </div>
       </div>
     );

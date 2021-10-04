@@ -24,7 +24,7 @@ class CommemtArea extends Component {
   render() {
     console.log(this.props.asin);
     return (
-      <div className="commentSection">
+      <div style={{ color: "light-grey !important" }}>
         <h5>Comments</h5>
         <CommentsList comments={this.state.comments} />
         <AddComment asin={this.props.asin}></AddComment>

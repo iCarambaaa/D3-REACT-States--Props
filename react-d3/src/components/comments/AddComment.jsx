@@ -5,22 +5,22 @@ import Form from "react-bootstrap/Form";
 class AddComment extends Component {
   state = {
     comments: {
-      comment: "",
-      rate: "",
-      elementId: "",
+      comment: "rate",
+      rate: "4",
+      elementId: this.props.asin,
     },
   };
 
   handleInput = (propertyName, value) => {
     this.setState({
-      comment: {
+      comments: {
         ...this.state.comments,
         [propertyName]: value,
       },
     });
   };
 
-  async postComment(e) {
+  async postComment(e, comment) {
     e.preventDefault();
 
     // console.log(this.state.comments);
@@ -30,7 +30,7 @@ class AddComment extends Component {
         "https://striveschool-api.herokuapp.com/api/comments/",
         {
           method: "POST",
-          body: JSON.stringify(this.state.comments),
+          body: JSON.stringify(comment),
           headers: {
             "Content-type": "application/json",
             Authorization:
@@ -48,13 +48,19 @@ class AddComment extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.postComment}>
+      <Form
+        onSubmit={(e) => {
+          console.log(this.state.comments);
+          this.postComment(e, this.state.comments);
+        }}
+      >
         <Form.Group className="mb-3">
           <Form.Label>Your Comment</Form.Label>
           <Form.Control
             type="text"
             placeholder="Type here..."
-            value={this.state.comments.comment}
+            // value={this.state.comments.comment}
+
             onChange={(e) => this.handleInput("comment", e.target.value)}
           />
         </Form.Group>
@@ -64,7 +70,6 @@ class AddComment extends Component {
           <Form.Control
             type="text"
             placeholder="1 - 5"
-            value={this.state.comments.rate}
             onChange={(e) => this.handleInput("rate", e.target.value)}
           ></Form.Control>
         </Form.Group>
