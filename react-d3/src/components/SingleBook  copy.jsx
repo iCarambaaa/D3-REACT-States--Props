@@ -1,16 +1,16 @@
 import { Component } from "react";
 import Card from "react-bootstrap/Card";
-// import CommentArea from "./comments/CommentArea";
+import CommentArea from "./comments/CommentArea";
 
 class SingleBook extends Component {
   state = {
     selected: false,
   };
 
-  sendData = () => this.props.parentCallback(this.props.asin);
-
   selectCard = () => {
-    this.setState({ selected: !this.state.selected }, sendData());
+    this.setState({
+      selected: !this.state.selected,
+    });
 
     console.log(this.state);
   };
@@ -34,7 +34,7 @@ class SingleBook extends Component {
         <Card.Body>
           <Card.Title className="clamp">{this.props.title}</Card.Title>
         </Card.Body>
-        {/* {this.state.selected ? <CommentArea asin={this.props.asin} /> : null} */}
+        {this.state.selected ? <CommentArea asin={this.props.asin} /> : null}
       </Card>
     );
   }

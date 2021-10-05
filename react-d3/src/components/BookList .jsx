@@ -2,7 +2,7 @@ import SingleBook from "./SingleBook ";
 import { Component } from "react";
 import Form from "react-bootstrap/Form";
 import CommemtArea from "./comments/CommentArea";
-//import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 
 class BookList extends Component {
   state = {
@@ -32,6 +32,10 @@ class BookList extends Component {
     // });
   };
 
+  callbackFunction = (childData) => {
+    this.setState({ message: childData });
+  };
+
   render() {
     return (
       <div>
@@ -46,11 +50,12 @@ class BookList extends Component {
           </Form.Group>
         </div>
 
-        <div className="row">
+        <Row>
           <div className="d-flex flex-wrap justify-content-around col-8">
             {!this.state.query
               ? this.props.list.map((books) => (
                   <SingleBook
+                    parentCallback={this.callbackFunction}
                     asin={books.asin}
                     image={books.img}
                     title={books.title}
@@ -58,6 +63,7 @@ class BookList extends Component {
                 ))
               : this.filterBookList(this.props.list).map((books) => (
                   <SingleBook
+                    parentCallback={this.callbackFunction}
                     asin={books.asin}
                     image={books.img}
                     title={books.title}
@@ -67,7 +73,7 @@ class BookList extends Component {
           <div className="col-4">
             <CommemtArea></CommemtArea>
           </div>
-        </div>
+        </Row>
       </div>
     );
   }
